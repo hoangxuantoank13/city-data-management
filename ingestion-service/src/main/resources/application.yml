@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: ingestion-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ingestiondb
+      database: "ingestiondb"
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: "latest"
+    producer:
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+storage:
+  provider: s3
+
+aws:
+  s3:
+    bucket-name: city-storage
+    access-key: your-access-key
+    secret-key: your-secret-key
+    region: ap-southeast-1
+
+kafka:
+  topics:
+    uploads: ingestion-uploads-events
+    water: ingestion-water-events
+    electricity: ingestion-electricity-events
+    waste: ingestion-waste-events
+    task-status: ingestion-status-events
+    integration-electricity: integration-electricity-events
+  consumer:
+    group-id: ingestion-group

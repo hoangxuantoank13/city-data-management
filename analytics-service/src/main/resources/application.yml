@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: analytics-service
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/analyticsdb"
+      database: "analyticsdb"
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: "latest"
+
+kafka:
+  topics:
+    analytics: analytics-events
+  consumer:
+    group-id: analytics-group

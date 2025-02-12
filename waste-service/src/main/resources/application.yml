@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: waste-service
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/wastedb"
+      database: "wastedb"
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: "latest"
+    producer:
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+kafka:
+  topics:
+    waste: ingestion-waste-events
+    task-status: ingestion-status-events
+    analytics: analytics-events
+  consumer:
+    group-id: waste-group

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: electricity-service
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/electricitydb"
+      database: "electricitydb"
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: "latest"
+    producer:
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+kafka:
+  topics:
+    electricity: ingestion-electricity-events
+    task-status: ingestion-status-events
+    analytics: analytics-events
+  consumer:
+    group-id: electricity-group
