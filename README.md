@@ -35,7 +35,7 @@ At least one of the data streams should come in through integration, one should 
 ![image](https://github.com/user-attachments/assets/2f76eb20-d215-4c9c-9354-ae46365780d1)
 
 ### Bulk import through uploading file flow
-![image](https://github.com/user-attachments/assets/0ad7e8e8-c119-4667-9604-88514f9ea22d)
+![image](https://github.com/user-attachments/assets/4189d017-f6d1-48c7-9230-b861aaa7a4b2)
 
 ### Integrate with provider flow
 ![image](https://github.com/user-attachments/assets/c6113a73-c618-4f10-84c7-0d3c1bae746b)
