@@ -35,10 +35,11 @@ At least one of the data streams should come in through integration, one should 
 ![image](https://github.com/user-attachments/assets/2f76eb20-d215-4c9c-9354-ae46365780d1)
 
 ### Bulk import through uploading file flow
-![image](https://github.com/user-attachments/assets/4189d017-f6d1-48c7-9230-b861aaa7a4b2)
+![image](https://github.com/user-attachments/assets/42f573b1-7ba1-47e2-ad39-09c479c270b9)
 
 ### Integrate with provider flow
-![image](https://github.com/user-attachments/assets/c6113a73-c618-4f10-84c7-0d3c1bae746b)
+![image](https://github.com/user-attachments/assets/c5d359bf-744e-4c3c-af32-6ce78f38bbe1)
+
 
 ### Get metric information
 ![image](https://github.com/user-attachments/assets/64a0a083-a9ab-44d0-9824-f656f48202f4)
@@ -49,12 +50,12 @@ At least one of the data streams should come in through integration, one should 
 ```json
 {
   "_id": "65d1a7f6b23e8a001c3a5e92", // Unique file ID
-  "file_name": "city_data.csv", // Name of the uploaded file
-  "file_path": "s3://city-storage/uploads/city_data.csv", // Object Storage location
-  "status": "PROCESSING", // PENDING / PROCESSING / COMPLETED / FAILED
-  "uploaded_by": "123", // The user uploaded file
-  "created_at": "2025-02-11T12:30:00Z", // Timestamp of file upload
-  "updated_at": "2025-02-11T12:35:00Z" // Last status update
+  "fileName": "city_data.csv", // Name of the uploaded file
+  "filePath": "s3://city-storage/uploads/city_data.csv", // Object Storage location
+  "status": "PROCESSING", // PENDING, PROCESSING,  COMPLETED, FAILED
+  "uploadedBy": "123", // The user uploaded file
+  "createdAt": "2025-02-11T12:30:00Z", // Timestamp of file upload
+  "updatedAt": "2025-02-11T12:35:00Z" // Last status update
 }
 ```
 
@@ -62,16 +63,16 @@ At least one of the data streams should come in through integration, one should 
 ```json
 {
   "_id": "65d1a82fb23e8a001c3a5e94", // Unique task ID
-  "source": "upload", // source of task: upload | entered_manually | integration
-  "service_type": "water", // Type of data: water | electricity | waste
-  "upload_id": "65d1a7f6b23e8a001c3a5e92", // Links to uploads._id, available for upload source only.
-  "raw_data": { // raw data, base on source and service_type
-    "customer_id": "12345",
+  "source": "UPLOAD", // source of task: ENTERED_MANUALLY, UPLOAD, INTEGRATION
+  "serviceType": "WATER", // Type of data: WATER, ELECTRICITY, WASTE
+  "uploadId": "65d1a7f6b23e8a001c3a5e92", // Links to uploads._id, available for UPLOAD source only.
+  "rawData": { // raw data, base on source and service_type
+    "customerId": "12345",
     "consumption": 20.5,
-    "billing_cycle": "2025-02"
+    "billingCycle": "2025-02"
   },
-  "status": "COMPLETED", // PENDING / PROCESSING / COMPLETED / FAILED
-  "created_at": "2025-02-11T12:31:00Z" // Task creation timestamp
+  "status": "COMPLETED", // PENDING, PROCESSING,  COMPLETED, FAILED
+  "createdAt": "2025-02-11T12:31:00Z" // Task creation timestamp
 }
 ```
 
@@ -80,11 +81,11 @@ At least one of the data streams should come in through integration, one should 
 ```json
 {
   "_id": "65d1a8a0b23e8a001c3a5e96", // Unique record ID
-  "task_id": "65d1a82fb23e8a001c3a5e94", // Links to tasks._id
-  "customer_id": "12345", // Unique customer identifier
+  "taskId": "65d1a82fb23e8a001c3a5e94", // Links to tasks._id
+  "customerId": "12345", // Unique customer identifier
   "consumption": 20.5, // Water usage in cubic meters
-  "billing_cycle": "2025-02", // YYYY-MM format
-  "created_at": "2025-02-11T12:40:00Z" // Record creation timestamp
+  "billingCycle": "2025-02", // YYYY-MM format
+  "createdAt": "2025-02-11T12:40:00Z" // Record creation timestamp
 }
 ```
 
@@ -93,11 +94,11 @@ At least one of the data streams should come in through integration, one should 
 ```json
 {
   "_id": "65d1a900b23e8a001c3a5e98", // Unique record ID
-  "task_id": "65d1a82fb23e8a001c3a5e94", // Links to tasks._id
-  "customer_id": "12345", // Unique customer identifier
+  "taskId": "65d1a82fb23e8a001c3a5e94", // Links to tasks._id
+  "customerId": "12345", // Unique customer identifier
   "consumption": 350.2, // Electricity usage in kWh
-  "billing_cycle": "2025-02", // YYYY-MM format
-  "created_at": "2025-02-11T12:45:00Z" // Record creation timestamp
+  "billingCycle": "2025-02", // YYYY-MM format
+  "createdAt": "2025-02-11T12:45:00Z" // Record creation timestamp
 }
 ```
 
@@ -106,12 +107,11 @@ At least one of the data streams should come in through integration, one should 
 ```json
 {
   "_id": "65d1a950b23e8a001c3a5e9a", // Unique record ID
-  "task_id": "65d1a82fb23e8a001c3a5e94", // Links to tasks._id
-  "customer_id": "12345", // Unique customer identifier
-  "waste_type": "organic", // Type of waste (organic, plastic, etc.)
-  "weight": 15.2, // Weight of waste in kg
-  "pickup_date": "2025-02-15", // Scheduled pickup date
-  "created_at": "2025-02-11T12:50:00Z" // Record creation timestamp
+  "taskId": "65d1a82fb23e8a001c3a5e94", // Links to tasks._id
+  "customerId": "12345", // Unique customer identifier
+  "wasteAmount": 15.2, // Weight of waste in kg
+  "collectionDate": "2025-02-15", // Scheduled collection date
+  "createdAt": "2025-02-11T12:50:00Z" // Record creation timestamp
 }
 ```
 ### Analytics Service
@@ -119,10 +119,10 @@ At least one of the data streams should come in through integration, one should 
 ```json
 {
   "_id": "65d1a9f0b23e8a001c3a5e9c", // Unique record ID
-  "service_type": "electricity", // Service type (water, electricity, waste)
-  "metric_name": "avg_usage", // Type of metric (total_usage, avg_usage)
+  "serviceType": "WATER", // Type of data: WATER, ELECTRICITY, WASTE
+  "metricName": "TOTAL_USAGE", // Type of metric (TOTAL_USAGE, AVERAGE_USAGE...)
   "value": 325.7, // Aggregated metric value
-  "timestamp": "2025-02-11T13:00:00Z" // Time of aggregation
+  "timeBucket": "2025-02-11T13:00:00Z" // Time-based aggregation (e.g., hourly)
 }
 ```
 
